@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WorldCities MIS Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero__text">
+        <p class="eyebrow">WorldCities MIS · Satellite Scheduling</p>
+        <h1>See the constellation negotiate the sky.</h1>
+        <p class="lede">
+          A globe-first explainer for the Maximum Independent Set solvers powering our satellite tasking experiments.
+          Drag the time scrubber, hover cities, and compare greedy heuristics against exact search.
+        </p>
+        <div class="hero__actions">
+          <button id="reload-btn" class="btn">Refresh data</button>
+        </div>
+      </div>
+      <div class="hero__stats" id="stat-cards">
+        <!-- Populated by main.js -->
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel globe-panel">
+        <div class="panel__head">
+          <div>
+            <p class="eyebrow">Live globe</p>
+            <h2>Observation heatmap</h2>
+            <p class="muted">Points are potential image requests; glowing arcs trace satellite ground tracks.</p>
+          </div>
+          <div class="legend" id="legend"></div>
+        </div>
+        <div id="globe-container"></div>
+        <div class="slider-row">
+          <label for="time-slider">Time scrubber</label>
+          <input type="range" id="time-slider" min="0" max="100" value="100">
+          <div class="slider-meta">
+            <span id="time-start">–</span>
+            <span id="time-current">All times</span>
+            <span id="time-end">–</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel side-panel">
+        <div class="card">
+          <div class="card__title">
+            <div>
+              <p class="eyebrow">Solver scorecard</p>
+              <h3>Greedy vs search</h3>
+            </div>
+            <span class="pill pill--ghost" id="summary-meta"></span>
+          </div>
+          <canvas id="component-chart" height="220"></canvas>
+          <p class="muted" id="chart-caption"></p>
+        </div>
+
+        <div class="card component-card">
+          <div class="card__title">
+            <div>
+              <p class="eyebrow">Connected components</p>
+              <h3>Where the solver spends time</h3>
+            </div>
+          </div>
+          <div id="component-list"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/globe.gl@2.34.3/dist/globe.gl.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
