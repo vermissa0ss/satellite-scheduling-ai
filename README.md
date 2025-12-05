@@ -7,6 +7,14 @@ Tools for the AIAA WorldCities one-day satellite scheduling problem:
 
 Data is **not** included. Only code lives here. Bring your own WorldCities collect files and METIS graph.
 
+## Prebuilt bundles (GitHub Release assets)
+If you grab `worldcities_12sats_release.zip` or `worldcities_4sats_release.zip` from the Releases page:
+1) Download and unzip at the repo root (you should end up with `frozen/worldcities_1d_12sats/...` or `frozen/worldcities_1d_4sats/...`).
+2) For the web demo, copy the included `viz_payload.json` into `webviz/data/viz_payload.json` (optional but gives you a prebuilt globe view).
+3) Run solvers with `--dataset worldcities_1d_12sats` (or `worldcities_1d_4sats`). Example:  
+   `python src/mis_solver.py --mode eval --dataset worldcities_1d_12sats --time-limit 60`
+4) To regenerate your own payload later, rerun `webviz/prepare_viz_data.py` with your summary + collect files.
+
 ## Repo layout
 - `src/` - end-to-end pipeline and solvers:
   - `build_frozen_datasets.py`: parse/filter collects, align with the METIS graph, and emit `frozen/<dataset>/data.npz` + `meta.json`.
